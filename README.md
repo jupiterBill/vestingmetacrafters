@@ -5,7 +5,7 @@ This Project is  a Vesting Application built to facilitate efficient disbursemen
 
 # Description 
 
-On the Backend we have Two contracts One vesting contract that handles the Logic behind efficient Token disbursement and another Contract which represent each organization's Token, The Tokens are incipient in nature as we create them during the registration of an organization as opposed to having an organization bring a Token along with them during registration this was greatly considered during development but in the end former was opted for in favor of simplicity, Hardhat(a development environment and testing framework for Ethereum smart contracts) for deployment and testing. There are Nine functions in total in the Vesing contract  which collectively ensure the application functions effectively on the front end :
+On the Backend we have Two contracts One vesting contract that handles the Logic behind efficient Token disbursement and another Contract which represent each organization's Token, The Tokens are incipient in nature as we create them during the registration of an organization as opposed to having an organization bring a Token along with them during registration this was greatly considered during development but in the end former was opted for in favor of simplicity, Hardhat(a development environment and testing framework for Ethereum smart contracts) was used  for deployment and testing. There are Nine functions in total in the Vesing contract  which collectively ensure the application functions effectively on the front end :
 
 * registerOrganization - handles the registration of an organization as the name implies
 
@@ -25,7 +25,7 @@ On the Backend we have Two contracts One vesting contract that handles the Logic
 
 * getBalance - facilitates balance retrieval.
 
-On the front end we have five pages :  organization registration, stakeholder registration, whitelist subregistration, a dashboard display stakeholder's details and a list of stakeholders to organizations and lastly the homepage which renders basic information such as an account's identity and account's address itself. We use the React Hook useContext to facilitate data sharing between components, we also create a javascript file context.js in it we write the codes for contract interaction using ethers.js and web3modal for  provider integration.
+On the front end using the powerful Library NextJs we have five pages :  organization registration, stakeholder registration, whitelist subregistration, a dashboard display stakeholder's details and a list of stakeholders to organizations and lastly the homepage which renders basic information such as an account's identity and account's address itself. We use the React Hook useContext to facilitate data sharing between components, we also create a javascript file context.js in it we write the codes for contract interaction using ethers.js and web3modal for  provider integration.
 
 
 
