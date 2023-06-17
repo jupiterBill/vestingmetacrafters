@@ -1,34 +1,55 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Sample solidity Vesting Decentralized Application
 
-## Getting Started
+# Overview
+This Project is  a Vesting Application built to facilitate efficient disbursement of treasuries to deserving recipients(Stakeholders, Founders, Community members e.t.c). This is accomplished by having Organizations register their Tokens on the platform to be distributed accordingly later to these recipients that qualify to recieve them.  
 
-First, run the development server:
+# Description 
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+On the Backend we have Two contracts One vesting contract that handles the Logic behind efficient Token disbursement and another Contract which represent each organization's Token, The Tokens are incipient in nature as we create them during the registration of an organization as opposed to having an organization bring a Token along with them during registration this was greatly considered during development but in the end former was opted for in favor of simplicity, Hardhat(a development environment and testing framework for Ethereum smart contracts) for deployment and testing. There are Nine functions in total in the Vesing contract  which collectively ensure the application functions effectively on the front end :
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+* registerOrganization - handles the registration of an organization as the name implies
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+* registerStakeholder  -  this handles the registration of recipient by an organization
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+* addToStakeHolderWhiteList - for certain recipients organizations are able to register whitelisted addresses under them with this function
 
-## Learn More
+* addressIdentity - this function is used to determine the identity of a user (Administrator, Stakeholder, whitelisted address, neutral)  
 
-To learn more about Next.js, take a look at the following resources:
+* releaseToken - this function enables an organization to release a gratuity to a stakeholder once they're qualified to receive it.
+ 
+* claimToken - another intuitive function name as function names are almost always intuitive this function allows a user to claim their gratuity if they have been deemed qualified by their respective organizations.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+* getStakeholdingDetails - enables stakeholders to get information about themselves, organization they belong to how much they can expect to get in terms of their gratuity e.t.c
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+* getStakeHolders - gets a list of stakeholders under an organization and their respective details
 
-## Deploy on Vercel
+* getBalance - facilitates balance retrieval.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+On the front end we have five pages :  organization registration, stakeholder registration, whitelist subregistration, a dashboard display stakeholder's details and a list of stakeholders to organizations and lastly the homepage which renders basic information such as an account's identity and account's address itself. We use the React Hook useContext to facilitate data sharing between components, we also create a javascript file context.js in it we write the codes for contract interaction using ethers.js and web3modal for  provider integration.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+
+# Getting Started
+
+* to use the Application you can clone the github repository onto your local machine and install the required dependencies using the command npm install
+
+
+* Once Dependencies have been installed successfully,you need to start a hardhat's local blockchain to deploy the contract by typing the command - npx hardhat node. once this is done  you need to deploy the contract by running the commmand - npx hardhat run scripts/deploy.js --network localhost 
+
+
+* Once the contract is deployed run the command -  npm run dev in the terminal and this will start the application on a local host on your machine and you go into your browser to begin  using the application.
+
+* Once in your browser you may now click the connect wallet button, keep in mind that you can use  a testnet of your choosing to  play around with the application  but i recommended using hardhat's local blockchain for simplicity, however  you need to manually add a localhost network into your metamask wallet.
+
+* Once all the above steps have been taken then you're good to go get ready to interact with the application enjoy !!.
+
+[Author](https://github.com/jupiterBill/vestingmetacrafters)
+
+# Wale
+
+[@metacraftersio](https://metacrafters.io)
+
+This project is licensed under the MIT License - see the LICENSE.md file for details
+
+
+
