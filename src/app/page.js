@@ -10,6 +10,9 @@ export default function Home() {
   const updateAddr =(e)=>{
     setAddr(e.target.value);
   }
+  useEffect(()=>{
+    getAddressIdentity(currentAccount)
+  },[])
   return (
     <div className="flex justify-center mt-10">
     <main className="flex flex-col justify-center mt-10 bg-white min-h-screen mx-4 md:mx-10 border border-green-500 rounded-lg p-8 w-full md:w-3/4">
@@ -28,9 +31,9 @@ export default function Home() {
         className="bg-purple-500 text-white px-4 py-2 rounded-tl-lg rounded-br-lg hover:bg-purple-600 transform skew-x-[-5deg]"
         type="button"
         onClick={()=>{
-          accountId === "Administrator"? releaseToken(addr):accountId ==="Stakeholder"?claimToken():claimToken()
+          accountId === "Administrator"? releaseToken(addr):accountId ==="Stakeholder"?claimToken():accountId==="Whitelisted Address"?claimToken():alert("Sorry you're not a user")
         }}>
-       {accountId === "Administrator"? "releaseToken":accountId ==="Stakeholder"?"claimToken":"claimToken"} 
+       {accountId === "Administrator"? "releaseToken":accountId ==="Stakeholder"?"claimToken":accountId ==="Whitelisted Address"? "claimToken":"Not registered"} 
       </button>
     </main>
   </div>

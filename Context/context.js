@@ -110,6 +110,7 @@ export const ContextProvider = ({children})=>{
     }catch(error){
       if(error){
         console.log(error)
+
         setError(error)
         setOpenError(true);
       }
@@ -125,6 +126,7 @@ export const ContextProvider = ({children})=>{
     }catch(error){
       if(error){
         console.log(error)
+        alert(error.reason)
         setError(error)
         setOpenError(true);
       }
@@ -147,7 +149,7 @@ export const ContextProvider = ({children})=>{
      
     }catch(error){
       if(error){
-        console.log(error)
+        console.log(error.reason)
         setError(error)
         setOpenError(true);
       }
@@ -170,7 +172,7 @@ export const ContextProvider = ({children})=>{
         
       }catch(error){
         if(error){
-          console.log(error)
+          console.log(error.reason)
           setError(error)
           setOpenError(true);
         }
@@ -192,6 +194,7 @@ export const ContextProvider = ({children})=>{
     }catch(error){
       if(error){
         console.log(error)
+        alert(error.reason)
         setError(error)
         setOpenError(true);
       }
@@ -200,8 +203,9 @@ export const ContextProvider = ({children})=>{
 
     const registerStakeHolder = async(stakeholderAddress,role,condition,lockTime,gratuity)=>{
       try{
-        const _lockTime = new Date(lockTime).getTime()/1000;
-        console.log("lockTime : "+lockTime)
+        const _lockTime = Math.round(new Date(lockTime).getTime()/1000);
+        const curr = Math.round(new Date().getTime()/1000)
+        console.log("lockTime : "+_lockTime  + "  curr" + "  " + Math.round(Date.now()/1000))
         const signer = await provider.getSigner();
         const contractInstance = await fetchContract(signer);
         const success = await contractInstance.registerStakeholder(stakeholderAddress,role,condition,_lockTime,gratuity);
@@ -209,6 +213,7 @@ export const ContextProvider = ({children})=>{
       }catch(error){
         if(error){
           console.log(error)
+          alert(error.reason)
           setError(error)
           setOpenError(true);
         }
@@ -224,6 +229,7 @@ export const ContextProvider = ({children})=>{
         }catch(error){
           if(error){
             console.log(error)
+            alert(error.reason)
             setError(error)
             setOpenError(true);
           }
@@ -237,8 +243,8 @@ export const ContextProvider = ({children})=>{
             console.log("token released:" +success);
           }catch(error){
             if(error){
-              console.log(error)
-              setError(error)
+              alert(error.reason)
+              console.log(error.reason)
               setOpenError(true);
             }
           } 
@@ -246,13 +252,16 @@ export const ContextProvider = ({children})=>{
       
           const claimToken = async()=>{
             try{
+              console.log("i'm tripping")
               const signer = await provider.getSigner();
               const contractInstance = await fetchContract(signer);
               const success = await contractInstance.claimToken();
               console.log("token claimed:" +success);
+            
+              
             }catch(error){
               if(error){
-                alert(error)
+                alert(error.reason)
                 setError(error)
                 setOpenError(true);
               }

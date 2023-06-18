@@ -65,7 +65,7 @@ modifier onlyOrg (address admin){
     admin:msg.sender,
     role:_role,
     condition:_condition,
-    lockTime:block.timestamp,
+    lockTime:_lockTime,
     conditionMet:false,
     gratuity:_gratuity});
     OrgToStakeholders[msg.sender].push(tempStakeHolder);
